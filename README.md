@@ -22,3 +22,20 @@ It features a Node.js/Express backend server that connects securely to a MongoDB
 ### 1. Create a custom private Docker network
 ```bash
 docker network create mongo-network
+
+
+
+# Run the MongoDB Container
+
+docker run -d \
+  --name mongo \
+  --network mongo-network \
+  -p 27017:27017 \
+  -e MONGO_INITDB_ROOT_USERNAME=delta_admin \
+  -e MONGO_INITDB_ROOT_PASSWORD=delta_password \
+  mongo
+
+# Install Dependencies & Start the Node Server
+
+npm install
+node server.js
